@@ -5,6 +5,9 @@
 
 Fork of https://github.com/mercury2269/sqsmover
 
+Move messages from queue A to queue B.
+Useful to manage dead letter queues
+
 ## Requirements
 
 - Go 1.12.x
