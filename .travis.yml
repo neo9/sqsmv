@@ -13,7 +13,7 @@ env:
 - GO111MODULE="on"
 
 script:
-- set -e; go mod vendor; go build -o ./sqsmv-linux-amd64 ./;
+- set -e; go mod vendor; go build -ldflags "-s -w" -o ./sqsmv-linux-amd64 ./;
 
 deploy:
   provider: releases
