@@ -1,0 +1,26 @@
+language: go
+go_import_path: github.com/neo9/sqsmv
+
+cache:
+  directories:
+  - "$HOME/.cache/go-build"
+  - "$GOPATH/pkg/mod"
+
+go:
+- 1.12.x
+
+env:
+- GO111MODULE="on"
+
+script:
+- set -e; go mod vendor; go build -o ./sqsmv-linux-amd64 ./;
+
+deploy:
+  provider: releases
+  api_key:
+    secure: oTNtDNR6TE9Oj0p6vbH8DV24l7abairodmwMzgQ+sWx2YNJJgxYg53qrR7yfsDSKhvQ3Vz+dkFwWFTZvtKBQs4TSfXplbJ+20OaQxoQR6PZZXN8Hg9Wp3mqv4wEl8RFrk/e2PJlwdZs15B3qLRxXQ2Zs4sdKSa7OcEAmf1Gts/d77jd032Ejv7BD+Zt56iDfZgiSBMWR1QJ5Xs+fwM61BO6qC0LNPpKQlabHiHDDer36NZd9R3uMeZalGpU/fy/9k9fqwIF2mg6PXa8DwImvdQgBa4qY6WwDXQcB1+AHkwP4Aog2CgIZSEqrcXhmKSv+d2p4fReKL4OOTUZWsHm7k54YyW3rb/bAOTD9eC4H6vKXk1cGq6owWTG2QpK6h/M+BeAS9DJ0/ZSQ2+jf/NUVi7NPGAF4zaCyKEr8ax4YqmH+ocrZ0tz/O+OeceY49AtmOl1BYwq0XcECe/4q8iKMFJlBVFb+j5b4iyf6WGxKvt4ChgK8TysTkiVVhmlYxZJChno1nIlJxt0N0CXuj2G28qwLiXTECljSWDvUnjehjK64me2bmrEBQ3rQXz6mlR6Y3IlgrJuuY3JB4Sx1gCT6vrj8yg/KoVizyeEkwyTpAD3pUs/ARpcEpXhBzFobicni7vasCFJZUEp51tmTHS3EONME1YnIN754Q1SaTFj4QNA=
+  file_glob: true
+  file: ./sqsmv-*-amd64
+  skip_cleanup: true
+  on:
+    tags: true
